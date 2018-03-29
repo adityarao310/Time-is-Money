@@ -1,0 +1,3 @@
+https://stackoverflow.com/questions/11607465/need-good-example-google-calendar-api-in-javascript?rq=1
+https://stackoverflow.com/questions/45431771/google-events-api-total-count-of-events-in-a-calendar?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
+https://stackoverflow.com/questions/15516985/get-calendar-events-between-two-dates?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
