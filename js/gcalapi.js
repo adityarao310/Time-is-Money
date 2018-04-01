@@ -46,9 +46,7 @@ function updateSigninStatus(isSignedIn) {
   if (isSignedIn) {
     authorizeButton.style.display = 'none';
     signoutButton.style.display = 'block';
-   // listUpcomingEvents();
-    // numberOfMeetings();
-    printResults();
+    getData();
   } else {
     authorizeButton.style.display = 'block';
     signoutButton.style.display = 'none';
