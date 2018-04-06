@@ -3,9 +3,9 @@ This file is used to manage states of sign in and default gcal API auth requirem
 Do not change shit here unless wanna play with default oauth settings
 */
 
-// Client ID and API key from the Developer Console
-var CLIENT_ID = '599690655357-8drkchjv5qlian50ha5n1aapj0sbabhr.apps.googleusercontent.com';
-var API_KEY = 'AIzaSyAcpwVxH7w0RosraBVoP8eaxzrMPIjKDiQ'; 
+// Client ID and API key from the Developer Console, replace with your own
+var CLIENT_ID = 'XXXX.apps.googleusercontent.com';
+var API_KEY = 'XXXX'; 
 
 // Array of API discovery doc URLs for APIs used by the quickstart
 var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
