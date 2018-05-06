@@ -1,3 +1,5 @@
+
+
 // FUNCTION Remove shit events
 // find if specific event has email source from flights + if all day event
 function isEventShit(object) {
@@ -48,6 +50,8 @@ function getMins(start,end) {
 
   
 function getData() {
+  var last_date = moment("2018-04-23 09:00").toISOString();
+  var first_date = moment("2018-04-27 19:00").toISOString();
  // Load data from Google Calendar
   gapi.client.calendar.events.list({
     'calendarId': 'primary',
@@ -85,7 +89,10 @@ function getData() {
         meeting_list.push(element);
       }
     });
-    // console.log(meeting_list);
+    var number_meetings = meeting_list.length;
+    var s = document.getElementById('summary_number_meetings');
+    s.innerHTML += number_meetings;
+
 
     // make a list of all categories
     //TODO --> make this shorter one day and maybe get from HTML form
@@ -105,7 +112,7 @@ function getData() {
         listcategory2.push(element);
       }
     });
-    console.log(listcategory2);
+    console.log("hi");
 
     var category3 = '[Non core]'
     var listcategory3 = [];
@@ -142,6 +149,14 @@ function getData() {
     var total_minutes3 = getTotalMins(listcategory3);
     var total_minutes4 = getTotalMins(listcategory4);
 
+
+    function insertData() {
+      var dates_looking = 0;
+      var summary_work_hours = 0;
+      var summary_real_work_hours = 0;
+      var summary_percent_accounted = 0;
+    }
+
     // Load the Visualization API and the corechart package.
     google.charts.load('current', {'packages':['corechart']});
 
@@ -154,7 +169,8 @@ function getData() {
 
     function drawChart() {
 
-      // Create the data table.
+
+      // Create the new pie chart.
       var data = new google.visualization.DataTable();
       data.addColumn('string', 'Type of work');
       data.addColumn('number', 'Mins');
@@ -164,18 +180,50 @@ function getData() {
       data.addRow(['Recruiter ops', total_minutes4]);
 
       // Set chart options
-      var options = {'title':'Time is money',
+      var options = {
                     'width':600,
-                    'height':450};
+                    'height':450
+                    };
 
       // Instantiate and draw our chart, passing in some options.
-      var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+      var chart = new google.visualization.PieChart(document.getElementById('pie_graph_chart'));
       chart.draw(data, options);
+
+      // Material line chart
+
+      google.charts.load('current', {'packages':['line']});
+      google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Day');
+      data.addColumn('number', 'Execution Hours');
+      data.addColumn('number', 'Meeting Hours');
+
+      data.addRows([
+        ['Mon',  37.8, 80.8],
+        ['Tue',  30.9, 69.5],
+        ['Wed',  25.4,   57],
+        ['Thu',  11.7, 18.8],
+        ['Fri',  11.9, 17.6],
+      ]);
+
+      var options = {
+        chart: {
+          title: 'Meetings vs Execution every day',
+          subtitle: 'in number of hours'
+        },
+        width: 900,
+        height: 500
+      };
+
+      var chart = new google.charts.Line(document.getElementById('line_graph_chart'));
+
+      chart.draw(data, google.charts.Line.convertOptions(options));
     }
 
-    
 
-
-
+    }
     }
   )};
