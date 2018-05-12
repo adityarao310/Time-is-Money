@@ -1,7 +1,9 @@
+console.log("TESTTESTTEST");
+// VARIABLES enter the required dates here
+var last_date = moment("2018-04-27 09:00").toISOString();
+var first_date = moment("2018-04-27 19:00").toISOString();
 
-
-// FUNCTION Remove shit events
-// find if specific event has email source from flights + if all day event
+// FUNCTION Remove shit events i.e. find if specific event has email source from flights + if all day event
 function isEventShit(object) {
   if (object.hasOwnProperty('source') == true || object.end.hasOwnProperty('date') == true) {
     return false; // came from email flight, remove it
@@ -10,7 +12,7 @@ function isEventShit(object) {
   }
 }
 
-// FUNCTION Find if event is execution by created by me, and no other invitees
+// FUNCTION Find if event is execution i.e. by created by me, and no other invitees
 function isEventExecution(object) {
   if (object.hasOwnProperty('attendees') == false && object.creator.hasOwnProperty('self') == true) {
     return true;
@@ -28,7 +30,7 @@ function isEventMeeting(object) {
   }
 }
 
-// FUNCTION Find if event was which category 
+// FUNCTION Find string matches in a sentence - used for category of execution work
 function stringMatch(tag, title) {
   var sentence = title;
   var phrase = tag;
@@ -47,21 +49,20 @@ function getMins(start,end) {
   return duration;
   }
 
-
-  
+ // FUNCTION Main function to load the gcal stuff and print shit 
 function getData() {
-  var last_date = moment("2018-04-23 09:00").toISOString();
-  var first_date = moment("2018-04-27 19:00").toISOString();
- // Load data from Google Calendar
+
+
+  // Load data from Google Calendar
   gapi.client.calendar.events.list({
     'calendarId': 'primary',
-    'timeMin': moment("2018-04-23 09:00").toISOString(),
+    'timeMin': moment("2018-04-27 17:00").toISOString(),
     'timeMax': moment("2018-04-27 19:00").toISOString(),
     'showDeleted': false,
     'singleEvents': true,
   }).then(function(resp) {
     var events_list = resp.result.items; 
-    // console.log(events_list);
+    console.log(events_list);
   
     // remove and make final proper list 
     final_list = [];
@@ -82,17 +83,6 @@ function getData() {
     });
     // console.log(execution_list);
 
-    // make a list for all meeting events
-    meeting_list =[];
-    final_list.forEach(element => {
-      if (isEventMeeting(element)) {
-        meeting_list.push(element);
-      }
-    });
-    var number_meetings = meeting_list.length;
-    var s = document.getElementById('summary_number_meetings');
-    s.innerHTML += number_meetings;
-
 
     // make a list of all categories
     //TODO --> make this shorter one day and maybe get from HTML form
@@ -112,7 +102,6 @@ function getData() {
         listcategory2.push(element);
       }
     });
-    console.log("hi");
 
     var category3 = '[Non core]'
     var listcategory3 = [];
@@ -202,7 +191,7 @@ function getData() {
       data.addColumn('number', 'Meeting Hours');
 
       data.addRows([
-        ['Mon',  37.8, 80.8],
+        ['XXX',  37.8, 80.8],
         ['Tue',  30.9, 69.5],
         ['Wed',  25.4,   57],
         ['Thu',  11.7, 18.8],
