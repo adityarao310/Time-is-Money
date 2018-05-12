@@ -1,4 +1,4 @@
-console.log("TESTTESTTEST");
+
 // VARIABLES enter the required dates here
 var last_date = moment("2018-04-27 09:00").toISOString();
 var first_date = moment("2018-04-27 19:00").toISOString();
@@ -147,18 +147,12 @@ function getData() {
     }
 
     // Load the Visualization API and the corechart package.
+    // Set a callback to run when the Google Visualization API is loaded.
     google.charts.load('current', {'packages':['corechart']});
-
-// Set a callback to run when the Google Visualization API is loaded.
     google.charts.setOnLoadCallback(drawChart);
 
-// Callback that creates and populates a data table,
-// instantiates the pie chart, passes in the data and
-// draws it.
-
+    // Callback that creates and populates a data table, instantiates the pie chart, passes data to draw
     function drawChart() {
-
-
       // Create the new pie chart.
       var data = new google.visualization.DataTable();
       data.addColumn('string', 'Type of work');

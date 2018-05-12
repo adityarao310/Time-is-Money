@@ -24,8 +24,6 @@
     <!--[if lt IE 9] 
     <script src="https:**oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https:**oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> -->
-    <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()" onreadystatechange="if (this.readyState === 'complete') this.onload()">
-    </script>
 
 </head>
 
@@ -73,9 +71,14 @@
                         <li class="nav-label">Time is money</li>
                         <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-tachometer"></i><span class="hide-menu">Dashboard <!--<span class="label label-rouded label-primary pull-right">2</span>--></span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="index.html">Weekly </a></li>
-                                <li>                                        <button id="authorize-button" style="display: none;">Authorize</button>
-                                        <button id="signout-button" style="display: none;">Sign Out</button></li>
+                                <li><a href="">Weekly</a></li>
+                                <li>    
+                                    <!--Add buttons to initiate auth sequence and sign out-->
+                                    <div id="authorize-button" style="display: none;">Authorize</div>
+                                    <div id="signout-button" style="display: none;">Sign Out</div>
+
+                                    <pre id="content"></pre>
+                                </li>
                                 <!-- <li><a href="index1.html">Analytics </a></li> -->
                             </ul>
                         </li>
@@ -117,7 +120,7 @@
                                 </div>
                                 <div class="media-body media-text-right">
                                     <h2 id ="summary_score_1">568120</h2>
-                                    <p class="m-b-0">avg work hours/day</p>
+                                    <p class="m-b-0">hours/day @ office</p>
                                 </div>
                             </div>
                         </div>
@@ -156,7 +159,7 @@
                                 </div>
                                 <div class="media-body media-text-right">
                                     <h2 id ="summary_score_4">847</h2>
-                                    <p class="m-b-0">% accounted hours</p>
+                                    <p class="m-b-0">% unaccounted hours</p>
                                 </div>
                             </div>
                         </div>
@@ -290,21 +293,25 @@
     <script src="js/sidebarmenu.js"></script>
     <!--stickey kit -->
     <script src="js/lib/sticky-kit-master/dist/sticky-kit.min.js"></script>
+
     <!--Custom JavaScript -->
-
-
-    <!-- Charts js -->
-
-
-
-    <script src="js/scripts.js"></script>
     <!-- scripit init-->
-
     <script src="js/custom.min.js"></script>
-    <!-- load functions.js to perform actions on this html body. gcal api feeds into functions.js too -->
+    <script src="js/scripts.js"></script>
+
+    <!-- Load Google Calendar API here before my main JS files -->
+    <script async defer src="https://apis.google.com/js/api.js"
+      onload="this.onload=function(){};handleClientLoad()"
+      onreadystatechange="if (this.readyState === 'complete') this.onload()">
+    </script>
+
+    <!-- load main.js here to insert data. oauth has oauth data via gcal sign state etc -->
+    <script src="js/oauth.js" type="text/javascript"></script>  
+    <script src="js/main.js" type="text/javascript"></script>  
+    <!-- temp hide 
     <script src="js/gcalapi.js" type="text/javascript"></script>  
     <script src="js/functions.js" type="text/javascript"></script>
-
+    -->
 </body>
 
 </html>
